@@ -20,6 +20,8 @@ La aplicación estaba abierta en `http://localhost:4173/#territorio`. Para inici
 - **Finanzas:** indicadores, gráficos, filtros, movimientos, exportación CSV y carga/vista previa/descarga de Excel. La planilla cargada no se transforma automáticamente en movimientos.
 - **Datos de NEXO:** pestaña final con pageviews y visitantes de Vercel Analytics a partir de un CSV, gastos y movimientos registrados en Finanzas, y acceso a Equipo y contactos. No presenta métricas inventadas.
 - **Equipo y contactos:** perfiles, empresas, filtros, estado y fichas individuales como subvista de Datos de NEXO.
+- **Contactos relevantes:** sección propia de navegación para registrar personas, empresas y organizaciones con rol, contacto, estado, notas y búsqueda. Reutiliza el directorio de personas ya existente.
+- **Objetivos:** sección de metas cuantificables con categoría, unidad, valor objetivo, progreso actual, fecha límite y notas. Permite sumar avances, ver porcentaje, editar y eliminar; el estado se marca completado al alcanzar la meta.
 
 ## Archivos principales
 
@@ -32,6 +34,7 @@ La aplicación estaba abierta en `http://localhost:4173/#territorio`. Para inici
 - `.env.example`: nombres de variables de ejemplo, sin credenciales.
 - `.vercelignore`: limita el despliegue directo por CLI a los archivos estáticos necesarios y `vercel.json`; excluye bocetos, documentos de estado y el proyecto TrucoLan.
 - `vercel.json`: configura el sitio como estático con la carpeta raíz como salida y sin comando de build.
+- Los objetivos se guardan en la clave local `nexo-control-v1` junto con el resto de los datos de esta app.
 - `.gitignore`: excluye los metadatos de Vercel, dependencias y secretos locales si luego se crea un repositorio.
 
 ## Datos y limitaciones conocidas

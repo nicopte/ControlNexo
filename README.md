@@ -19,6 +19,8 @@ Abrí http://localhost:3000. `npm start` usa el mismo servidor. La aplicación e
 - **Territorio:** mapa interactivo de Mendoza, contactos editables, filtros, búsqueda y registro de visitas/seguimiento.
 - **Finanzas:** indicadores y gráficos calculados desde movimientos ingresados; filtros y exportación CSV; carga, vista previa y descarga del archivo Excel original.
 - **Equipo:** perfiles y contactos de organizaciones con búsqueda, edición, estado y tipo.
+- **Contactos:** directorio dedicado de personas, empresas y organizaciones relevantes para NEXO.
+- **Objetivos:** metas medibles con unidad, fecha límite, progreso incremental, porcentaje y estado de cumplimiento.
 
 ## Datos y privacidad
 
