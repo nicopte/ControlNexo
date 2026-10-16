@@ -1,0 +1,42 @@
+# NEXO Control
+
+Aplicación privada e independiente para organizar NEXO. Interfaz en español y adaptable a escritorio y celular.
+
+## Ejecutar
+
+Requiere Node.js 20 o posterior. No necesita instalar dependencias:
+
+```sh
+npm run dev
+```
+
+Abrí http://localhost:3000. `npm start` usa el mismo servidor. La aplicación es estática y puede publicarse en Vercel como sitio estático.
+
+## Secciones
+
+- **Ideas:** lienzo con nodos movibles, ramas, edición, colores por horizonte y conexiones.
+- **Calentarlo:** calendario mensual/semanal/agenda, gestión de eventos, categorías, estados y filtros.
+- **Territorio:** mapa interactivo de Mendoza, contactos editables, filtros, búsqueda y registro de visitas/seguimiento.
+- **Finanzas:** indicadores y gráficos calculados desde movimientos ingresados; filtros y exportación CSV; carga, vista previa y descarga del archivo Excel original.
+- **Equipo:** perfiles y contactos de organizaciones con búsqueda, edición, estado y tipo.
+
+## Datos y privacidad
+
+Los datos de la aplicación se guardan en `localStorage` del navegador. Permanecen al recargar, pero solo están disponibles en ese navegador y dispositivo. No hay sincronización multiusuario, base de datos ni autenticación compartida en esta versión. Por eso todavía no se aplican permisos por rol; no cargues información sensible hasta configurar autenticación, autorización y almacenamiento de servidor.
+
+La sección Excel conserva el archivo cargado en el mismo navegador; muestra una vista previa del CSV o de la primera hoja XLSX y la cantidad de hojas encontradas. No incorpora filas a los movimientos financieros: revisá la planilla y cargá los movimientos que correspondan. Reemplazar un archivo existente requiere confirmación.
+
+El mapa usa Leaflet y mosaicos de OpenStreetMap; la planilla Excel usa SheetJS. Ambos se cargan desde CDN y el mapa requiere internet. Los lugares sin coordenadas siguen apareciendo en la lista, pero necesitan coordenadas para mostrarse como marcadores.
+
+## Próximos pasos para colaboración
+
+Para que el equipo comparta cambios, agregar una base de datos (por ejemplo PostgreSQL administrado) y autenticación, mover las operaciones de lectura/escritura a rutas de servidor y validar permisos por rol. Configurar las variables privadas en el proveedor de despliegue; nunca exponer claves en el navegador. Los costos dependen del proveedor, plan y uso. `.env.example` reserva nombres, no contiene credenciales.
+
+## GitHub y Vercel
+
+1. Crear un repositorio nuevo y privado en GitHub para este proyecto.
+2. Inicializar Git en esta carpeta, agregar los archivos y publicar la rama principal en ese repositorio.
+3. Importar ese repositorio desde Vercel; seleccionar proyecto estático, sin comando de build y con esta carpeta como raíz.
+4. Configurar dominio y variables solo cuando se agreguen servicios que las necesiten.
+
+Los cinco bocetos recibidos se guardan en `references/fotos_adminnexo/` como referencia de distribución.

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d31"><title>NEXO Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" onerror="var f=document.createElement('link');f.rel='stylesheet';f.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(f)">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#ideas" aria-label="NEXO Control"><span class="brand-mark">n</span><span><b>NEXO</b><small>CONTROL</small></span></a>
+    <div class="workspace"><span class="workspace-dot"></span><span><b>Espacio de trabajo</b><small>Operaciones internas</small></span><span class="chevron">⌄</span></div>
+    <div class="nav-label">GESTIÓN</div>
+    <nav class="nav" aria-label="Secciones principales">
+      <a href="#ideas" data-page="ideas"><i>⌘</i><span>Mapa de ideas</span><kbd>01</kbd></a>
+      <a href="#calendario" data-page="calendario"><i>▦</i><span>Calentarlo</span><kbd>02</kbd></a>
+      <a href="#territorio" data-page="territorio"><i>⌖</i><span>Territorio</span><kbd>03</kbd></a>
+      <a href="#finanzas" data-page="finanzas"><i>◉</i><span>Finanzas</span><kbd>04</kbd></a>
+      <a href="#equipo" data-page="equipo"><i>◔</i><span>Datos de NEXO</span><kbd>05</kbd></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="privacy"><span class="privacy-icon">◈</span><div><b>Espacio privado</b><small>Datos en este dispositivo</small></div><span class="status-dot"></span></div><button class="user-chip" id="user-button"><span class="avatar avatar-blue">N</span><span><b>Equipo NEXO</b><small>Espacio local</small></span><span class="more">···</span></button></div>
+  </aside>
+  <main class="main"><header class="topbar"><div class="crumb"><span>Workspace</span><span class="slash">/</span><b id="crumb-current">Mapa de ideas</b></div><div class="top-actions"><span class="today-label" id="today-label"></span><button class="icon-button" id="help-button" title="Acerca del almacenamiento">ⓘ</button><span class="avatar avatar-dark">N</span></div></header><div id="app" class="page-wrap"></div></main>
+  <div id="modal-root"></div><div class="toast" id="toast" role="status"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" onerror="var f=document.createElement('script');f.src='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js';f.onload=function(){window.dispatchEvent(new Event('leafletready'))};document.head.appendChild(f)"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
