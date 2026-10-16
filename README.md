@@ -34,9 +34,8 @@ Para que el equipo comparta cambios, agregar una base de datos (por ejemplo Post
 
 ## GitHub y Vercel
 
-1. Crear un repositorio nuevo y privado en GitHub para este proyecto.
-2. Inicializar Git en esta carpeta, agregar los archivos y publicar la rama principal en ese repositorio.
-3. Importar ese repositorio desde Vercel; seleccionar proyecto estático, sin comando de build y con esta carpeta como raíz.
-4. Configurar dominio y variables solo cuando se agreguen servicios que las necesiten.
+El código se publica en `https://github.com/nicopte/ControlNexo.git`, rama `main`. El archivo `vercel.json` configura la carpeta raíz como salida estática, sin comando de build. `.vercelignore` limita los despliegues directos por CLI a los archivos necesarios para servir la interfaz.
+
+Para crear una vista previa desde una sesión autenticada de Vercel CLI: ejecutar `vercel` desde esta carpeta. La app no necesita variables de entorno para funcionar en modo local; no agregues secretos al repositorio.
 
 Los cinco bocetos recibidos se guardan en `references/fotos_adminnexo/` como referencia de distribución.
