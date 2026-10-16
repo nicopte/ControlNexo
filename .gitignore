@@ -6,3 +6,7 @@ node_modules/
 npm-debug.log*
 trucolan-work/
 trucolan-redisenado.zip
+
+.vercel
+.env*
+!.env.example
