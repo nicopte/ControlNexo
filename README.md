@@ -22,22 +22,22 @@ Abrí http://localhost:3000. `npm start` usa el mismo servidor. La aplicación e
 - **Contactos:** directorio dedicado de personas, empresas y organizaciones relevantes para NEXO.
 - **Objetivos:** metas medibles con unidad, fecha límite, progreso incremental, porcentaje y estado de cumplimiento.
 
-## Datos y privacidad
+## Datos y sincronización compartida
 
-Los datos de la aplicación se guardan en `localStorage` del navegador. Permanecen al recargar, pero solo están disponibles en ese navegador y dispositivo. No hay sincronización multiusuario, base de datos ni autenticación compartida en esta versión. Por eso todavía no se aplican permisos por rol; no cargues información sensible hasta configurar autenticación, autorización y almacenamiento de servidor.
+La aplicación conserva una copia local y puede sincronizar los registros con Supabase. Para habilitarla, crea un proyecto Supabase, ejecuta `supabase/schema.sql` en su SQL Editor y configura `SUPABASE_URL` y `SUPABASE_ANON_KEY` en las variables de entorno de Vercel. Para desarrollo local, copia esos dos valores a `.env.local`; `server.js` solo expone esas variables desde `/api/config`. La clave usada en el navegador debe ser la publishable/anon key, nunca la `service_role` o secret key.
+
+**Acceso público aceptado:** la tabla permite lectura, alta, edición y eliminación a cualquiera que tenga la URL de la app. El selector de integrantes es un nombre elegido, no verifica identidad; los nombres del historial son atribuciones declaradas por cada visitante. No guardes información confidencial, personal o financiera que no deba ser pública. La sincronización busca cambios cada cinco segundos; si dos personas editan el mismo registro a la vez, prevalece la última escritura.
 
 La sección Excel conserva el archivo cargado en el mismo navegador; muestra una vista previa del CSV o de la primera hoja XLSX y la cantidad de hojas encontradas. No incorpora filas a los movimientos financieros: revisá la planilla y cargá los movimientos que correspondan. Reemplazar un archivo existente requiere confirmación.
 
 El mapa usa Leaflet y mosaicos de OpenStreetMap; la planilla Excel usa SheetJS. Ambos se cargan desde CDN y el mapa requiere internet. Los lugares sin coordenadas siguen apareciendo en la lista, pero necesitan coordenadas para mostrarse como marcadores.
 
-## Próximos pasos para colaboración
-
-Para que el equipo comparta cambios, agregar una base de datos (por ejemplo PostgreSQL administrado) y autenticación, mover las operaciones de lectura/escritura a rutas de servidor y validar permisos por rol. Configurar las variables privadas en el proveedor de despliegue; nunca exponer claves en el navegador. Los costos dependen del proveedor, plan y uso. `.env.example` reserva nombres, no contiene credenciales.
+El esquema SQL deja deliberadamente habilitado el acceso público porque el equipo eligió usar selección de nombre sin verificación. Se puede cambiar a enlaces por email y políticas con identidad verificada más adelante.
 
 ## GitHub y Vercel
 
 El código se publica en `https://github.com/nicopte/ControlNexo.git`, rama `main`. El archivo `vercel.json` configura la carpeta raíz como salida estática, sin comando de build. `.vercelignore` limita los despliegues directos por CLI a los archivos necesarios para servir la interfaz.
 
-Para crear una vista previa desde una sesión autenticada de Vercel CLI: ejecutar `vercel` desde esta carpeta. La app no necesita variables de entorno para funcionar en modo local; no agregues secretos al repositorio.
+Para desplegar desde una sesión autenticada de Vercel CLI: ejecutar `vercel` desde esta carpeta. La URL y la clave publicable de Supabase se configuran en Settings → Environment Variables; nunca agregues claves de servicio al repositorio.
 
 Los cinco bocetos recibidos se guardan en `references/fotos_adminnexo/` como referencia de distribución.

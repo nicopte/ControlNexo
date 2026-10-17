@@ -6,9 +6,17 @@ Este archivo resume el estado del prototipo y sirve para retomar el trabajo en o
 
 ## Situación actual
 
-NEXO Control es una aplicación web en español, adaptable a escritorio y celular. Está implementada con HTML, CSS y JavaScript sin proceso de compilación ni dependencias instaladas para ejecutarla. El código ya está publicado en GitHub en `https://github.com/nicopte/ControlNexo.git`, rama `main`. Se está preparando el primer despliegue de vista previa en Vercel. Todavía no tiene base de datos compartida o autenticación.
+NEXO Control es una aplicación web en español, adaptable a escritorio y celular. Está implementada con HTML, CSS y JavaScript sin proceso de compilación ni dependencias instaladas para ejecutarla. El código ya está publicado en GitHub en `https://github.com/nicopte/ControlNexo.git`, rama `main`. Se prepara conectar el proyecto compartido con Supabase; faltan las credenciales del proyecto.
 
 La aplicación estaba abierta en `http://localhost:4173/#territorio`. Para iniciarla de nuevo, ejecutar `npm run dev` desde esta carpeta y abrir `http://localhost:3000`. El servidor admite `PORT` para elegir otro puerto, por ejemplo 4173.
+
+## Sesión de equipo y sincronización
+
+- El selector de usuario elige un perfil de Equipo sin contraseña; la elección se guarda por navegador.
+- El botón **Actividad** lista altas, cambios y eliminaciones con el nombre elegido y la hora. Cada registro conserva `createdByName`, `updatedByName` y `updatedAt`.
+- Supabase ya tiene cliente REST, refresco cada cinco segundos, migración inicial desde el navegador hacia una tabla vacía y persistencia local de respaldo.
+- Configuración pendiente: crear/proveer el proyecto Supabase, ejecutar `supabase/schema.sql`, configurar `SUPABASE_URL` y `SUPABASE_ANON_KEY` en Vercel y `.env.local` para desarrollo local. No se encontró ninguna de estas credenciales al retomar.
+- El equipo eligió deliberadamente acceso sin verificación: quien tenga el enlace puede leer y modificar todos los datos y elegir cualquier nombre. El historial no verifica quién estaba detrás de un cambio. No se debe cargar información que requiera confidencialidad.
 
 ## Secciones y cambios realizados
 
@@ -39,7 +47,7 @@ La aplicación estaba abierta en `http://localhost:4173/#territorio`. Para inici
 
 ## Datos y limitaciones conocidas
 
-- Los datos se guardan en `localStorage`; viven en este navegador y dispositivo y no se comparten con el equipo. Para un uso real multiusuario hace falta integrar base de datos, autenticación y permisos en servidor. Supabase es una opción pendiente de configurar.
+- La app mantiene copia local y trae integración REST con Supabase, pero todavía no sincroniza hasta configurar URL y clave publicable. El equipo eligió acceso público sin verificación de identidad; cualquier persona con el enlace puede leer y modificar todos los datos.
 - No se encontró el Excel de movimientos en la carpeta del proyecto. El archivo deberá compartirse para importar y revisar sus datos.
 - La importación de tráfico está preparada para CSV con fecha, pageviews y visitors. La conexión automática con Vercel no está configurada; requiere habilitar Web Analytics y guardar el token de acceso solo en el servidor. Documentación: [Vercel Web Analytics API](https://vercel.com/docs/analytics/web-analytics-api).
 - OpenStreetMap y Overpass dependen de internet y de los datos aportados por la comunidad. Las fichas pueden no tener descripción, foto, teléfono o coordenadas, y los datos no indican popularidad.
@@ -49,11 +57,12 @@ La aplicación estaba abierta en `http://localhost:4173/#territorio`. Para inici
 
 ## Preparación para Vercel
 
-1. Publicar los cambios en la rama `main` de GitHub y crear una vista previa con Vercel CLI o importar el repositorio en Vercel. `vercel.json` configura el sitio estático con esta carpeta como salida y sin comando de build; `.vercelignore` acota el envío de CLI. Probar las rutas y el comportamiento del navegador desplegado.
-4. Antes de usar datos compartidos, decidir el esquema de Supabase, autenticación, permisos por rol y migración de los datos locales.
+1. Ejecutar `supabase/schema.sql` en el SQL Editor del proyecto Supabase.
+2. Configurar `SUPABASE_URL` y `SUPABASE_ANON_KEY` en `.env.local` para desarrollo y como variables de entorno en Vercel.
+3. Publicar los cambios en `main` y desplegar. La primera app que conecte a una tabla vacía copia sus datos locales como base compartida.
 5. Conectar Vercel Analytics desde una función de servidor y configurar credenciales privadas como variables de entorno; no poner tokens en `app.js`.
 6. Importar el Excel real, revisar la vista previa y confirmar el mapeo de columnas antes de incorporar movimientos.
 
 ## Próxima continuación sugerida
 
-Probar la app en el navegador después de recargar, especialmente Territorio: mosaicos del mapa, sugerencias cercanas, carga/descarga, marcadores agrupados y marcado de visitado. Después preparar el repositorio privado y definir si se integra Supabase antes del primer despliegue público.
+Configurar el proyecto Supabase, aplicar el esquema y verificar con dos navegadores que los cambios y el historial se compartan.
